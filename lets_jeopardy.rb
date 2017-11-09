@@ -1,7 +1,10 @@
-final_line = []
+categories = []
 
 File.open("trivia-questions.txt").each do |line|
-  final_line << line
+  categories << line if line != "\n"
 end
 
-p eval(final_line[-1])[:results].size
+categories.map!{|line| eval(line)[:results]}
+categories.flatten!
+
+p categories[-1]
